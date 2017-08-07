@@ -14,10 +14,12 @@ fireball_stamp=[]
 fireball_pos=[]
 
 fireball = turtle.clone()
+fireball.shape("circle")
 fireball.penup()
-TIME_STEP = 150
+TIME_STEP = 1
+fireball.hideturtle()
 
-def make_fire_ball():
+def make_fireball():
     min_x=-int(SIZE_X/3/BALL_SIZE)+1
     max_x=int(SIZE_X/2/BALL_SIZE)-1
 
@@ -28,11 +30,20 @@ def make_fire_ball():
     fireball_stamp.append(stamp1)
     fireball_pos.append((fire_ballX, 300))
 
+make_fireball()
 
+def move_fireball():
 
-##def move_fire_ball():
-##    fireball.goto(randx, 450)
-##    fireball.ontimer(move_fireball, TIME_STEP)
-##    for ball in fireball_pos:
-##        ball[1] - 50
+    for i in range (len(fireball_pos)):
+        new_pos = (fireball_pos[i][0], fireball_pos[i][1]-25)
+        fireball.goto(new_pos)
+        fireball_pos[i]=new_pos
+        fireball.clearstamp(fireball_stamp[i])
+        stamp = fireball.stamp()
+        fireball_stamp[i]=stamp
+    make_fireball()
+    turtle.ontimer(move_fireball, TIME_STEP)
+   
+move_fireball()
+
     
