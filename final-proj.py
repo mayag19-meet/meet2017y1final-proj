@@ -35,14 +35,16 @@ def falling_fire():
         x_pos = fire.pos()[0]
         y_pos = fire.pos()[1]
         if y_pos >= bottom:
-            a=30	
-            b=50
+            a=25	
+            b=40
             cx=character.pos()[0]
             cy=character.pos()[1]
             y_pos = y_pos - step
             fire.goto(x_pos,y_pos)
             if(x_pos>=cx-a)and(x_pos<=cx+a)and(y_pos>=cy-b)and(y_pos<=cy+b):
                 lose_heart()
+                ind = fire_list.index(fire)
+                fire_destroy.append(ind)
         else:
             ind = fire_list.index(fire)
             fire_destroy.append(ind)
@@ -87,7 +89,7 @@ health = maxhealth
 health_list = []
 health_pos = []
 d=50
-a=30
+a=50
 health1=(800/2 -d,600/2 -d)
 health2=(800/2 -d-a,600/2 -d)
 health3=(800/2 -d-a*2,600/2 -d)
@@ -100,7 +102,8 @@ heart_pos=[(health1),(health2),(health3),(health4),(health5)]
 heart_stamp_list=[]
 
 heart.penup() 
-
+turtle.register_shape('1.gif')
+heart.shape('1.gif')
 for position in heart_pos:
     heart.goto(position)
     new_heart=heart.stamp()
@@ -109,7 +112,7 @@ for position in heart_pos:
 
 def lose_heart():
     current_health=len(heart_stamp_list)
-    if current_health >=1:
+    if current_health >1:
         old_stamp=heart_stamp_list.pop(-1)
         heart.clearstamp(old_stamp)
     else:
@@ -123,13 +126,15 @@ def gain_health():
         new_heart=heart.stamp()
         heart_stamp_list.append(new_heart)
 
-character=turtle.clone()
 
+turtle.register_shape('rn.gif')
+turtle.register_shape('ln.gif')
+character.shape('rn.gif')
 turtle.bgpic('bg.gif')
 
 turtle.penup()
 turtle.hideturtle()
-
+character.penup()
 character.goto(0,-118)
 
 UP = 0
@@ -166,12 +171,9 @@ LEFT_ARROW = 'Left'
 RIGHT_ARROW = 'Right'
 
 turtle.onkeypress(left, LEFT_ARROW)
-
 turtle.onkeypress(right, RIGHT_ARROW)
 turtle.listen()
 
-turtle.register_shape('rn.gif')
-turtle.register_shape('ln.gif')
 
 #if turtle.pos() in fireball_pos:
 	#food_ind = fireball_pos.index(snake.pos())
