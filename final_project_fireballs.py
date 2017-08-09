@@ -90,8 +90,8 @@ falling_fire()
 
 #######################
 
-turtle.register_shape('ln.gif')
-turtle.register_shape('rn.gif')
+##turtle.register_shape('ln.gif')
+##turtle.register_shape('rn.gif')
 ##turtle.register_shape('5.gif')
 ##turtle.register_shape('r3.gif')
 ##turtle.register_shape('r4.gif')
@@ -102,17 +102,15 @@ turtle.register_shape('rn.gif')
 ##turtle.register_shape('l4.gif')
 ##turtle.register_shape('l5.gif')
 ##turtle.bgpic('ted.gif')
-
-TIME_STEP=200
-
 healthbar=turtle.clone()
 healthbar.penup()
 healthbar.goto(150,300)
 ##healthbar.shape('5.gif')
+##turtle.bgpic('bg.gif')
 
-turtle.penup()
 
-turtle.goto(0,-118)
+
+character.goto(0,-118)
 
 UP = 0
 DOWN = 1
@@ -123,35 +121,50 @@ direction= UP
 def left():
     global direction
     direction=LEFT
-    turtle.shape('ln.gif')
-    old_pos=turtle.pos()
+    old_pos=character.pos()
     x=old_pos[0]
     y=old_pos[1]
+    character.shape('ln.gif')
+    character.goto(x-30,y)
+   
 
-    turtle.goto(x-30,y)
-
+    
+    #print(turtle.pos())
 def right():
     global direction
     direction=RIGHT
-    turtle.pos()
-    old_pos=turtle.pos()
+    character.pos()
+    old_pos=character.pos()
     x=old_pos[0]
     y=old_pos[1]
-    turtle.shape('r1.gif')
-    turtle.goto(x+30,y)
-
+    character.shape('rn.gif')
+    character.goto(x+30,y)
+    
+    #print(turtle.pos())
 
 LEFT_ARROW = 'Left'
 RIGHT_ARROW = 'Right'
 
-turtle.onkeypress(left, LEFT_ARROW)
+character.onkeypress(left, LEFT_ARROW)
 
-turtle.onkeypress(right, RIGHT_ARROW)
-turtle.listen()
+character.onkeypress(right, RIGHT_ARROW)
+character.listen()
 
 ##turtle.register_shape('rn.gif')
 ##turtle.register_shape('ln.gif')
+##
+###if turtle.pos() in fireball_pos:
+	#food_ind = fireball_pos.index(snake.pos())
+ 	#food.clearstamp(food_stamps[food_ind])
+   	#food_pos.pop(food_ind)
+	#food_stamps.pop(food_ind)
+    #make_food()
+    #w=snake.stamp()
+    #pos_list.append(w)
+    #stamp_list.append(w)
+
 turtle.mainloop()
+
 
 ###################
 
