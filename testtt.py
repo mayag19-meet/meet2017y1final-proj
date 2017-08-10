@@ -1,8 +1,14 @@
 import turtle
 import random
+import pygame
 turtle.register_shape('fireball.gif')
 turtle.register_shape('sc.gif')
 turtle.register_shape('hf.gif')
+
+pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load("WaitForIt.wav")
+pygame.mixer.music.play()
 
 character=turtle.clone()
 character.shape('sc.gif')
