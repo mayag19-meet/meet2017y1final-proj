@@ -2,7 +2,7 @@ import turtle
 import random
 turtle.register_shape('fireball.gif')
 turtle.register_shape('sc.gif')
-turtle.register_shape('pizza.gif')
+turtle.register_shape('hf.gif')
 
 character=turtle.clone()
 character.shape('sc.gif')
@@ -103,7 +103,7 @@ def create_food():
     max_x = int(width/2/unitsize)-1
     x_pos = random.randint(min_x,max_x)*unitsize
     food = turtle.clone()
-    food.shape('square')
+    food.shape('hf.gif')
     food.goto(x_pos,y_pos)
     food.showturtle()
     food_list.append(food)
