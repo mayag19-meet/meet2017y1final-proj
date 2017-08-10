@@ -54,7 +54,7 @@ def falling_fire():
         old_fire = fire_list.pop(ind)
         old_fire.hideturtle()
         del old_fire
-    if counter_fireballs == 2:
+    if counter_fireballs == 4:
         create_fire()
         counter_fireballs=0    
     turtle.ontimer(falling_fire,100)
@@ -69,69 +69,8 @@ SIZE_X = 800
 SIZE_Y = 600
 turtle.setup(SIZE_X,SIZE_Y)
 
-################################################
-
-width = 800
-height = 600
-unitsize = 20
-turtle.tracer(1,0)
-turtle.setup(width,height)
-turtle.hideturtle()
-turtle.penup()
-counter_healthfood=0
-#counter_fireballs=0
 
 
-food_list = []
-#fire_list = []
-
-
-step = 20
-bottom = -height/2 + 100
-
-def create_food():
-    y_pos = height/2 - 50
-    min_x = -int(width/2/unitsize)+1
-    max_x = int(width/2/unitsize)-1
-    x_pos = random.randint(min_x,max_x)*unitsize
-    food = turtle.clone()
-    food.shape('square')
-    food.goto(x_pos,y_pos)
-    food.showturtle()
-    food_list.append(food)
-
-def falling_food():
-    global counter_healthfood
-    counter_healthfood += 1
-    food_destroy = []
-    for food in food_list:
-        x_pos = food.pos()[0]
-        y_pos = food.pos()[1]
-        if y_pos >= bottom:
-            d=25	
-            e=40
-            cx=character.pos()[0]
-            cy=character.pos()[1]
-            y_pos = y_pos - step
-            food.goto(x_pos,y_pos)
-            if(x_pos>=cx-d)and(x_pos<=cx+d)and(y_pos>=cy-e)and(y_pos<=cy+e):
-                gain_health()
-                ind = food_list.index(food)
-                food_destroy.append(ind)
-        else:
-            ind = food_list.index(food)
-            food_destroy.append(ind)
-
-    for ind in food_destroy:
-        old_food = food_list.pop(ind)
-        old_food.hideturtle()
-        del old_food
-    if counter_healthfood ==30:
-        create_food()
-        counter_healthfood=0
-    turtle.ontimer(falling_food,100)
-create_food()
-falling_food()
 
 #fireballs=turtle.clone()
 #healthy_food=turtle.clone()
@@ -183,9 +122,7 @@ def lose_heart():
 def gain_health():
     current_health=len(heart_stamp_list)
     if current_health!= maxhealth:
-        print(current_health)
-        print(heart_pos)
-        heart.goto(heart_pos[current_health])
+        health.goto(health_pos[current_health])
         new_heart=heart.stamp()
         heart_stamp_list.append(new_heart)
 
@@ -249,3 +186,4 @@ turtle.listen()
     #stamp_list.append(w)
 
 turtle.mainloop()
+

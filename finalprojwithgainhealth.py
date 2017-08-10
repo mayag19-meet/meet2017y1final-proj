@@ -54,7 +54,7 @@ def falling_fire():
         old_fire = fire_list.pop(ind)
         old_fire.hideturtle()
         del old_fire
-    if counter_fireballs == 2:
+    if counter_fireballs == 4:
         create_fire()
         counter_fireballs=0    
     turtle.ontimer(falling_fire,100)
