@@ -47,7 +47,11 @@ def falling_food():
         old_food = food_list.pop(ind)
         old_food.hideturtle()
         del old_food
+<<<<<<< HEAD
+    if counter_healthfood ==30:
+=======
     if counter_healthfood == 30:
+>>>>>>> 57b8368bce1eb705917871020afc9acee84e471a
         create_food()
         counter_healthfood=0
     turtle.ontimer(falling_food,100)
